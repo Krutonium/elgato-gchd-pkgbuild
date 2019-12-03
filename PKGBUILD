@@ -28,7 +28,7 @@ build() {
 package() {
 	install -D "./build/src/gchd" "$pkgdir/opt/$pkgname/gchd"
 	echo "#!/bin/sh" > gchd.sh
-	echo "cd /opt/$pkgname && exec ./gchd" >> gchd.sh
+	echo "cd /opt/$pkgname && exec ./gchd $@" >> gchd.sh
 	install -Dm755 gchd.sh "$pkgdir/usr/bin/gchd"
 	7z e "$srcdir/Game_Capture_HD_2.11.8.zip" 'Game Capture HD.app/Contents/Resources/Firmware/Beddo/'{mb86m01_assp_nsec_idle.bin,mb86m01_assp_nsec_enc_h.bin} -o"./firmware/"
 	install -Dm775 "./firmware/mb86m01_assp_nsec_idle.bin" "$pkgdir/usr/lib/firmware/gchd/mb86m01_assp_nsec_idle.bin"
